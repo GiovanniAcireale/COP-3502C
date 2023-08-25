@@ -1,0 +1,4 @@
+﻿  SignOfTrouble.c
+C:\Users\Gio\Desktop\Portfolio\COP-3502C\Assignment 0\SignOfTrouble.c(90,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Gio\Desktop\Portfolio\COP-3502C\Assignment 0\SignOfTrouble.c(91,21): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Assignment 0.vcxproj -> C:\Users\Gio\Desktop\Portfolio\COP-3502C\Assignment 0\x64\Debug\Assignment 0.exe
