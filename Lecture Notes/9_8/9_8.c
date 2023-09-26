@@ -89,7 +89,7 @@ void cleanList(LL* list) {
 }
 
 void main(void) {
-	LL list;
+	/*LL list;
 
 	// initialize list
 	list.head = NULL;
@@ -115,6 +115,9 @@ void main(void) {
 
 	// clean list
 	cleanList(&list);
+	*/
+
+
 
 	return 0;
 }
