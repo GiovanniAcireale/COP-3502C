@@ -76,7 +76,7 @@ Sample Input:	|	Sample Output:
 typedef struct Group {
 	int id;
 	double angle;
-	int size;
+	int numberOfPeople;
 } Group;
 
 // an array of groups
@@ -105,15 +105,118 @@ struct Group** createAndInitializeGroups(int size) {
 		// and returns the angle from the y-axis. You can then convert this
 		// angle to degrees by multiplying by 180 and dividing by PI.
 		double angle = atan2(x,y) * 180 / PI;
+		if (angle < 0) angle += 360; // convert to positive angle (0 - 360)
 
 		// input data into the group
 		groups[i]->angle = angle;
-		groups[i]->size = groupSize;
+		groups[i]->numberOfPeople = groupSize;
 	}
 
 	return groups;
 }
 
+// Functions:
+
+// Sort all groups by the angle
+// effectively sort the groups using merge or quick sort
+void merge(struct Group** arr, int left, int mid, int right) {
+	int i, j, k;
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+
+	// Create temporary arrays
+	struct Group** L = (struct Group**)malloc(n1 * sizeof(struct Group*));
+	struct Group** R = (struct Group**)malloc(n2 * sizeof(struct Group*));
+
+	// Copy data to temporary arrays L[] and R[]
+	for (i = 0; i < n1; i++) {
+		L[i] = arr[left + i];
+	}
+	for (j = 0; j < n2; j++) {
+		R[j] = arr[mid + 1 + j];
+	}
+
+	// Merge the temporary arrays back into arr[left..right]
+	i = 0;
+	j = 0;
+	k = left;
+
+	while (i < n1 && j < n2) {
+		if (L[i]->angle <= R[j]->angle) {
+			arr[k] = L[i];
+			i++;
+		}
+		else {
+			arr[k] = R[j];
+			j++;
+		}
+		k++;
+	}
+
+	// Copy the remaining elements of L[], if any
+	while (i < n1) {
+		arr[k] = L[i];
+		i++;
+		k++;
+	}
+
+	// Copy the remaining elements of R[], if any
+	while (j < n2) {
+		arr[k] = R[j];
+		j++;
+		k++;
+	}
+
+	free(L);
+	free(R);
+}
+
+// Main Merge Sort function
+void mergeSort(struct Group** arr, int left, int right) {
+	if (left < right) {
+		int mid = left + (right - left) / 2;
+
+		// Sort first and second halves
+		mergeSort(arr, left, mid);
+		mergeSort(arr, mid + 1, right);
+
+		// Merge the sorted halves
+		merge(arr, left, mid, right);
+	}
+}
+
+// find the maximum angle that can be used such that no one is in the
+// projection cone
+double maxAngle(struct Group** groups, int numberOfGroups, int initialAngle) {
+	// Sort the array of groups by angle (if not sorted already)
+	//mergeSort(groups, 0, numberOfGroups - 1);
+
+	double maxGap = 0.0;
+
+	// Calculate the gap between the first and last group to handle wrap-around
+	double wrapAroundGap = groups[0]->angle + (360.0 - groups[numberOfGroups - 1]->angle);
+
+	for (int i = 1; i < numberOfGroups; i++) {
+		double gap = groups[i]->angle - groups[i - 1]->angle;
+		if (gap > maxGap) {
+			maxGap = gap;
+		}
+	}
+
+	// Calculate the gap between the last group and the initial angle
+	double gapToInitial = initialAngle - groups[numberOfGroups - 1]->angle;
+
+	// Check if either of the two gaps is larger than the maximum gap found
+	if (wrapAroundGap > maxGap) {
+		maxGap = wrapAroundGap;
+	}
+
+	if (gapToInitial > maxGap) {
+		maxGap = gapToInitial;
+	}
+
+	return maxGap;
+}
 
 // You should use a 2 pointer sweep to effectively find the minimum
 // number of people in the projection cone. You can sweep through 
@@ -122,35 +225,54 @@ struct Group** createAndInitializeGroups(int size) {
 // the group should be in the circle sector. When the front is 
 // updated the sum should be decreased, and when the back is 
 // updated the sum should be increased.
-
-// Functions:
-
-// Sort all groups by the angle
-// effectively sort the groups using merge or quick sort
-void sortGroups(Group *groups, int size) {
-	// using merge sort
-
-
-}
-
 // find the minimum number of people in the projection cone
-int minPeople(Group *groups, int size, int angle) {
-	// TODO
-	return 0;
+int minPeopleInCone(struct Group** groups, int numberOfGroups, int initialAngle) {
+	// Sort the array by angle using Merge Sort
+	//mergeSort(groups, 0, numberOfGroups - 1);
+
+	// Initialize two pointers
+	int front = 0; // Front pointer
+	int back = 0;  // Back pointer
+	int sum = groups[0]->numberOfPeople; // Initialize sum with the first group's size
+
+	int minPeople = sum; // Initialize the minimum people with the initial sum
+
+	while (front < numberOfGroups) {
+		// Check if the gap is less than or equal to the initial angle
+		double gap = groups[front]->angle - groups[back]->angle;
+		if (gap <= initialAngle) {
+			// Move the front pointer to include more groups
+			front++;
+			if (front < numberOfGroups) {
+				sum += groups[front]->numberOfPeople;
+			}
+		}
+		else {
+			// Move the back pointer to decrease the sum
+			sum -= groups[back]->numberOfPeople;
+			back++;
+			// Check if the back pointer caught up to the front
+			if (back == front && front < numberOfGroups) {
+				// Move the front pointer to include more groups
+				front++;
+				if (front < numberOfGroups) {
+					sum += groups[front]->numberOfPeople;
+				}
+			}
+		}
+
+		// Update the minimum people in the cone
+		if (sum < minPeople) {
+			minPeople = sum;
+		}
+	}
+
+	return minPeople;
 }
 
-// find the maximum angle that can be used such that no one is in the
-// projection cone
-double maxAngle(Group *groups, int size) {
-	// TODO
-	return 0;
-}
 
 
-
-
-
-
+// main function
 int main() {
 
 	int numberOfGroups, initialAngle;
@@ -170,19 +292,49 @@ int main() {
 		printf("Memory allocation failed.\n");
 		return 1;
 	}
-
+	/*
 	// Test group creation:
 	printf("\nTEST GROUP CREATION:\n");
 	for (int i = 0; i < numberOfGroups; i++) {
-		printf("Group %d: angle: %f, size: %d\n", groups[i]->id, groups[i]->angle, groups[i]->size);
+		printf("Group %d: angle: %f, size: %d\n", groups[i]->id, groups[i]->angle, groups[i]->numberOfPeople);
 	} 
 	printf("TEST GROUP CREATION END\n\n");
 	// PASSED
+	*/
+	// Sort the array by angle using Merge Sort
+	mergeSort(groups, 0, numberOfGroups - 1);
+	/*
+	// Test group sort by angle
+	printf("\nTEST GROUP SORT:\n");
+	printf("Sorted Array by Angle:\n");
+	for (int i = 0; i < numberOfGroups; i++) {
+		printf("Group %d: angle: %.2lf, size: %d\n",
+			groups[i]->id, groups[i]->angle, groups[i]->numberOfPeople);
+	}
+	printf("TEST GROUP SORT END\n\n");
+	// PASSED
+	*/
+	// Test max angle
+	double max_gap = maxAngle(groups, numberOfGroups, initialAngle);
+	//printf("Maximum Angle Gap: %.4lf degrees\n", max_gap);
+	// PASSED
 
-	// sort groups by angle
-	sortGroups(groups, numberOfGroups);
-	// ^ WIP ^ 10/28
+	// Test min peeps
+	int min_people = minPeopleInCone(groups, numberOfGroups, initialAngle);
+	if (max_gap > initialAngle) {
+		min_people = 0;
+		//printf("Minimum Number of People in Projection Cone: %d\n", min_people);
+	}
+	else {
+		//printf("Minimum Number of People in Projection Cone: %d\n", min_people);
+	}
+	// PASSED
+	
+	// OUTPUT
+	printf("\n%d\n", min_people);
+	printf("%.4lf\n", max_gap);
 
+	
 	// free allocated memory
 	for (int i = 0; i < numberOfGroups; i++) {
 		free(groups[i]);
