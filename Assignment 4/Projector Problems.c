@@ -292,6 +292,7 @@ int main() {
 		printf("Memory allocation failed.\n");
 		return 1;
 	}
+
 	/*
 	// Test group creation:
 	printf("\nTEST GROUP CREATION:\n");
@@ -301,8 +302,10 @@ int main() {
 	printf("TEST GROUP CREATION END\n\n");
 	// PASSED
 	*/
+
 	// Sort the array by angle using Merge Sort
 	mergeSort(groups, 0, numberOfGroups - 1);
+
 	/*
 	// Test group sort by angle
 	printf("\nTEST GROUP SORT:\n");
@@ -314,6 +317,7 @@ int main() {
 	printf("TEST GROUP SORT END\n\n");
 	// PASSED
 	*/
+
 	// Test max angle
 	double max_gap = maxAngle(groups, numberOfGroups, initialAngle);
 	//printf("Maximum Angle Gap: %.4lf degrees\n", max_gap);
