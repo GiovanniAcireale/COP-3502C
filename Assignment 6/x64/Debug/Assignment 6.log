@@ -1,0 +1,7 @@
+﻿  Theater Inventory.c
+C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\Theater Inventory.c(100,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\Theater Inventory.c(174,30): warning C4090: 'function': different 'const' qualifiers
+C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\Theater Inventory.c(190,30): warning C4090: 'function': different 'const' qualifiers
+C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\Theater Inventory.c(228,30): warning C4090: 'function': different 'const' qualifiers
+C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\Theater Inventory.c(243,30): warning C4090: 'function': different 'const' qualifiers
+  Assignment 6.vcxproj -> C:\Users\alexa\Desktop\Projects\COP-3502C\Assignment 6\x64\Debug\Assignment 6.exe
