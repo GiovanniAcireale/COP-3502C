@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Spell Construction\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AB90C029-3C05-4661-8DCE-35F486A7851D}|Spell Construction.vcxproj|C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Spell Construction\\Assignment3.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{AB90C029-3C05-4661-8DCE-35F486A7851D}|Spell Construction.vcxproj|solutionrelative:Assignment3.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Assignment3.c",
+              "DocumentMoniker": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Spell Construction\\Assignment3.c",
+              "RelativeDocumentMoniker": "Assignment3.c",
+              "ToolTip": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Spell Construction\\Assignment3.c",
+              "RelativeToolTip": "Assignment3.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-10-17T02:14:58.9Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
