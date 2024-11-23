@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Magic Containment\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5EB7B459-C093-4FA5-8958-907B66BB6C54}|Magic Containment.vcxproj|C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Magic Containment\\Assignment4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5EB7B459-C093-4FA5-8958-907B66BB6C54}|Magic Containment.vcxproj|solutionrelative:Assignment4.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Assignment4.c",
+              "DocumentMoniker": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Magic Containment\\Assignment4.c",
+              "RelativeDocumentMoniker": "Assignment4.c",
+              "ToolTip": "C:\\Users\\Gio\\OneDrive\\Desktop\\Portfolio\\COP-3502C\\Magic Containment\\Assignment4.c",
+              "RelativeToolTip": "Assignment4.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-10-28T01:55:18.043Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
